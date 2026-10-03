@@ -79,23 +79,71 @@ function criarCard (chamado) {
   return card
 }
 
-function filtrarPorPrioridade () {
-  const chamadosFiltrados = bdChamados.filter(
-    chamado => chamado.prioridade === 'Alta'
-  )
-
-  carregarChamados(chamadosFiltrados)
-}
-
 function carregarChamados (chamados) {
   const cards = chamados.map(criarCard)
   const container = document.getElementById('chamados-container')
   container.replaceChildren(...cards)
 }
 
-botaoPrioridade.onclick = () => carregarChamadosFiltrados('Prioridade')
-botaoStatus.onclick = () => carregarChamadosFiltrados('Status')
-botaoPrioridadeStatus.onclick = () => carregarChamadosFiltrados('Prioridade de status')
+function filtrarPorPrioridade (prioridade) {
+
+  if (prioridade === '') {
+    carregarChamados(bdChamados)
+    return
+  }
+
+  const chamadosFiltrados = bdChamados.filter(
+    chamado => chamado.prioridade === prioridade
+  )
+
+  carregarChamados(chamadosFiltrados)
+}
+
+function filtrarPorStatus (status) {
+
+  if (status === '') {
+    carregarChamados(bdChamados)
+    return
+  }
+
+  const chamadosFiltrados = bdChamados.filter(
+    chamado => chamado.status === status
+  )
+
+  carregarChamados(chamadosFiltrados)
+}
+
+function filtrarPorPrioridadeStatus (prioridade, status) {
+
+  const chamadosFiltrados = bdChamados.filter(chamado => {
+
+    const prioridadeOK =
+      prioridade === '' || chamado.prioridade === prioridade
+
+    const statusOK =
+      status === '' || chamado.status === status
+
+    return prioridadeOK && statusOK
+  })
+
+  carregarChamados(chamadosFiltrados)
+}
+
+botaoPrioridade.onchange = () => {
+  filtrarPorPrioridade(botaoPrioridade.value)
+}
+
+botaoStatus.onchange = () => {
+  filtrarPorStatus(botaoStatus.value)
+}
+
+botaoPrioridadeStatus.onclick = () => {
+  filtrarPorPrioridadeStatus(
+    botaoPrioridade.value,
+    botaoStatus.value
+  )
+}
+
 botaoBuscaNome.onclick = () => carregarChamadosFiltrados('Pesquisar por nome')
 
 carregarChamados(bdChamados)

@@ -9,8 +9,21 @@
 </head>
 <body>
     <form>
-        <button type="button" id="prioridade">Prioridade</button>
-        <button type="button" id="status">Status</button>
+        <select id="prioridade">
+            <option value="">Todas as prioridades</option>
+            <option value="Crítica">Crítica</option>
+            <option value="Alta">Alta</option>
+            <option value="Média">Média</option>
+            <option value="Baixa">Baixa</option>
+        </select>
+
+        <select id="status">
+            <option value="">Todas os status</option>
+            <option value="Aberto">Aberto</option>
+            <option value="Fechado">Fechado</option>
+            <option value="Em progresso">Em progresso</option>
+        </select>
+
         <button type="button" id="prioridade-status">Prioridade de status</button>
         <button type="button" id="busca-nome">Pesquisar por nome</button>
     </form>
