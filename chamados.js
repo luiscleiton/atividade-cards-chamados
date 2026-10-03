@@ -56,7 +56,8 @@ const bdChamados = [
 const botaoPrioridade = document.getElementById('prioridade')
 const botaoStatus = document.getElementById('status')
 const botaoPrioridadeStatus = document.getElementById('prioridade-status')
-const botaoBuscaNome = document.getElementById('busca-nome')
+const buscaNome = document.getElementById('busca-nome')
+const botaoConfirmarNome = document.getElementById('confirmar-nome')
 
 function criarCard (chamado) {
   const card = document.createElement('div')
@@ -129,6 +130,15 @@ function filtrarPorPrioridadeStatus (prioridade, status) {
   carregarChamados(chamadosFiltrados)
 }
 
+function buscarPorNome (nome) {
+
+  const chamadosFiltrados = bdChamados.filter(
+    chamado => chamado.usuario.toLowerCase().includes(nome.toLowerCase())
+  )
+
+  carregarChamados(chamadosFiltrados)
+}
+
 botaoPrioridade.onchange = () => {
   filtrarPorPrioridade(botaoPrioridade.value)
 }
@@ -144,6 +154,8 @@ botaoPrioridadeStatus.onclick = () => {
   )
 }
 
-botaoBuscaNome.onclick = () => carregarChamadosFiltrados('Pesquisar por nome')
+botaoConfirmarNome.onclick = () => {
+  buscarPorNome(buscaNome.value)
+}
 
 carregarChamados(bdChamados)

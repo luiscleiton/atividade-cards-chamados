@@ -18,14 +18,16 @@
         </select>
 
         <select id="status">
-            <option value="">Todas os status</option>
+            <option value="">Todos os status</option>
             <option value="Aberto">Aberto</option>
             <option value="Fechado">Fechado</option>
             <option value="Em progresso">Em progresso</option>
         </select>
 
         <button type="button" id="prioridade-status">Prioridade de status</button>
-        <button type="button" id="busca-nome">Pesquisar por nome</button>
+
+        <input type="text" id="busca-nome" placeholder="Digite o nome do usuário">
+        <button type="button" id="confirmar-nome">Confirmar</button>
     </form>
     <hr>
     <div class="chamados-container" id="chamados-container"></div>
